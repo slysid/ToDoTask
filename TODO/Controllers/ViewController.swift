@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, TodoCellProtocolDelegate , DetailControllerDelegate{
     
     @IBOutlet weak var todoTable:UITableView?
+    @IBOutlet weak var UIAddButton:UIButton?
     
     private var dataSource:[[String:Any]] = []
     
@@ -38,13 +39,24 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // Dispose of any resources that can be recreated.
     }
     
+    // IBACTION METHODS
+    
+    @IBAction private func addButtonTapped() {
+        
+        let detailController = DetailController(nibName: "DetailController", bundle: Bundle.main)
+        detailController.delegate = self
+        self.present(detailController, animated: true) {
+            
+        }
+    }
+    
+    // PRIVATE METHODS
+    
     private func fillInDataSource() {
         
          self.dataSource = FileHandlingManager.sharedInstance.readJSONFile(name: DATAFILENAME) as! [[String:Any]]
         self.dataSource = self.dataSource.filter{($0["trashed"] as! Bool) == false}
     }
-    
-    // PRIVATE METHODS
     
     private func hanldeCompletionSelection(cell:TodoCell) {
         
