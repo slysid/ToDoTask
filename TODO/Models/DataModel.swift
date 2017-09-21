@@ -22,6 +22,12 @@ enum ControllerMode:String {
     case add
 }
 
+enum TableMode:String {
+    
+    case documents
+    case trash
+}
+
 struct Item:Equatable {
     
     var id:Int = 0

@@ -12,12 +12,24 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBOutlet weak var todoTable:UITableView?
     @IBOutlet weak var UIAddButton:UIButton?
+    @IBOutlet weak var UITrashButton:UIButton?
     
     private var dataSource:[[String:Any]] = []
+    private var trashIndicator:Bool = false {
+        didSet {
+            if (self.trashIndicator == false) {
+                self.UITrashButton!.setBackgroundImage(UIImage(named:"trash.png"), for: UIControlState.normal)
+            }
+            else {
+                self.UITrashButton!.setBackgroundImage(UIImage(named:"document.png"), for: UIControlState.normal)
+            }
+        }
+    }
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
         
         self.fillInDataSource()
         
@@ -47,7 +59,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         detailController.delegate = self
         self.present(detailController, animated: true) {
             
+            detailController.mode = .add
         }
+    }
+    
+    @IBAction private func trashTapped() {
+        
+        self.trashIndicator = !self.trashIndicator
+        self.fillInDataSource()
+        self.todoTable!.reloadData()
     }
     
     // PRIVATE METHODS
@@ -55,7 +75,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     private func fillInDataSource() {
         
          self.dataSource = FileHandlingManager.sharedInstance.readJSONFile(name: DATAFILENAME) as! [[String:Any]]
-        self.dataSource = self.dataSource.filter{($0["trashed"] as! Bool) == false}
+        self.dataSource = self.dataSource.filter{($0["trashed"] as! Bool) == self.trashIndicator}
+        self.dataSource = self.dataSource.reversed()
     }
     
     private func hanldeCompletionSelection(cell:TodoCell) {

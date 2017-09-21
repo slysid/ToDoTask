@@ -36,7 +36,8 @@ class DetailController: UIViewController, UITextViewDelegate, UITextFieldDelegat
                 self.viewMode()
             case .edit:
                 self.editMode()
-            default:()
+            case .add:
+                self.addMode()
             }
         }
     }
@@ -49,18 +50,19 @@ class DetailController: UIViewController, UITextViewDelegate, UITextFieldDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         
+         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboard), name:Notification.Name.UIKeyboardDidShow , object: nil)
+        
         self.UIToDoDescription!.delegate = self
         self.UIToDoTitle!.delegate = self
-        self.tags = self.itemData!.tags
         
-        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboard), name:Notification.Name.UIKeyboardDidShow , object: nil)
-        
-        self.UIToDoTitle!.text = self.itemData!.name
-        self.UIToDoDescription!.text = self.itemData!.description
-        self.UICreationDate!.text = self.itemData!.creationdate.components(separatedBy: "T")[0]
-        
-        self.viewMode()
-        self.showTags()
+        if (self.itemData != nil) {
+            self.tags = self.itemData!.tags
+            self.UIToDoTitle!.text = self.itemData!.name
+            self.UIToDoDescription!.text = self.itemData!.description
+            self.UICreationDate!.text = self.itemData!.creationdate.components(separatedBy: "T")[0]
+            self.viewMode()
+            self.showTags()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -120,7 +122,20 @@ class DetailController: UIViewController, UITextViewDelegate, UITextFieldDelegat
         self.UIToDoDescription!.isEditable = true
         self.UIToDoTitle!.isEnabled = true
         self.editButton.button?.setTitle("COMMIT", for: UIControlState.normal)
-        self.UIToDoDescription!.becomeFirstResponder()
+        self.UIToDoTitle!.becomeFirstResponder()
+        self.UITagTextField!.isHidden = false
+        self.UITagAddButton!.isHidden = self.UITagTextField!.isHidden
+        
+    }
+    
+    private func addMode() {
+        
+        self.showAddButton()
+        
+        self.UIToDoDescription!.isEditable = true
+        self.UIToDoTitle!.isEnabled = true
+        self.addButton.button?.setTitle("ADD", for: UIControlState.normal)
+        self.UIToDoTitle!.becomeFirstResponder()
         self.UITagTextField!.isHidden = false
         self.UITagAddButton!.isHidden = self.UITagTextField!.isHidden
         
@@ -159,19 +174,6 @@ class DetailController: UIViewController, UITextViewDelegate, UITextFieldDelegat
             tagView.UITagLabel!.text = tag
             tagView.UITagLabel!.backgroundColor = UIColor.black
         }
-        
-        /*if (tags.count < MAXTAGS) {
-            while tags.count < MAXTAGS {
-                tags.append("")
-            }
-        }
-        
-        for tag in tags {
-            
-            let tagLabel = TagView.initWithTagData(text: tag)
-            tagLabel.delegate = self
-            self.UITagsStack!.addArrangedSubview(tagLabel)
-        }*/
     }
     
     private func showEditButton() {
@@ -211,7 +213,21 @@ class DetailController: UIViewController, UITextViewDelegate, UITextFieldDelegat
     
     private func addAction(sender:CustomButton) {
         
-        self.mode = .add
+        var addItem = Item()
+        
+        addItem.name = self.UIToDoTitle!.text!
+        addItem.description = self.UIToDoDescription!.text
+        addItem.creationdate = Date().iso8601Short
+        addItem.completed = false
+        addItem.completiondate = ""
+        addItem.tags = self.formTagsArray()
+        addItem.trashed = false
+        
+        FileHandlingManager.sharedInstance.addItem(item: addItem)
+        if (self.delegate != nil) {
+            self.delegate!.refreshData(decision: true)
+        }
+        self.closeTapped()
     }
     
     private func formSaveData() {
@@ -231,7 +247,6 @@ class DetailController: UIViewController, UITextViewDelegate, UITextFieldDelegat
             
             FileHandlingManager.sharedInstance.editItem(item: editedItem)
             if (self.delegate != nil) {
-                
                 self.delegate!.refreshData(decision: true)
             }
         }
@@ -242,9 +257,9 @@ class DetailController: UIViewController, UITextViewDelegate, UITextFieldDelegat
         var result:[String] = []
         
         for v in self.UITagsStack!.arrangedSubviews {
-            let text = (v as! TagView).UITagLabel!.text
+            let text = (v as! TagView).UITagLabel!.text!.lowercased()
             if (text != "") {
-                result.append(text!)
+                result.append(text)
             }
          }
         return result
