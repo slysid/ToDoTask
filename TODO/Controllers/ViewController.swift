@@ -87,6 +87,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.completionStatus = !cell.completionStatus!
     }
     
+    private func trashItem(indexpath:IndexPath) {
+        
+        let item = self.dataSource[indexpath.row].item()
+        FileHandlingManager.sharedInstance.trashItem(item: item, trash: !self.trashIndicator)
+        self.fillInDataSource()
+        self.todoTable!.reloadData()
+    }
+    
     //TODOCELL DELEGATE METHODS
     
     func singleTapAction(cell: TodoCell) {
@@ -174,17 +182,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
            return false
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        
-        if (editingStyle == UITableViewCellEditingStyle.delete) {
-            
-            let item = self.dataSource[indexPath.row].item()
-            FileHandlingManager.sharedInstance.trashItem(item: item)
-            self.fillInDataSource()
-            tableView.reloadData()
-        }
-    }
-    
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         
         let item1 = self.dataSource[sourceIndexPath.row].item()
@@ -193,6 +190,33 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.fillInDataSource()
         tableView.reloadData()
         
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let recover = UITableViewRowAction.init(style: .normal, title: "Recover") { (action, indexpath) in
+            self.trashItem(indexpath: indexpath)
+        }
+        
+        let delete = UITableViewRowAction.init(style: .destructive, title: "Delete") { (action
+            , indexpath) in
+           if (self.trashIndicator == false) {
+                self.trashItem(indexpath: indexpath)
+           }
+           else {
+            
+                let item = self.dataSource[indexpath.row].item()
+                FileHandlingManager.sharedInstance.deleteFromTrash(item: item)
+                self.fillInDataSource()
+                tableView.reloadData()
+           }
+        }
+        
+        if (self.trashIndicator == false) {
+            return [delete]
+        }
+        
+        return [delete, recover]
     }
 }
 

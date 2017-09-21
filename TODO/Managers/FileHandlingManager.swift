@@ -186,14 +186,29 @@ class FileHandlingManager:NSObject {
         }
     }
     
-    public func trashItem(item:Item) {
+    public func trashItem(item:Item, trash:Bool) {
         
         guard (self.checkForFileExistenceInDocuments(file:DATAFILENAME) == true) else {
             return
         }
         
         do {
-            try self.updateRecordInJSONFile(name: DATAFILENAME, item: item, key: "trashed", value:true)
+            try self.updateRecordInJSONFile(name: DATAFILENAME, item: item, key: "trashed", value:trash)
+        }
+        catch {
+            
+            print(error.localizedDescription)
+        }
+    }
+    
+    public func deleteFromTrash(item:Item) {
+        
+        guard (self.checkForFileExistenceInDocuments(file:DATAFILENAME) == true) else {
+            return
+        }
+        
+        do {
+            try self.deleteRecordFromJSONFile(name: DATAFILENAME, item: item)
         }
         catch {
             
