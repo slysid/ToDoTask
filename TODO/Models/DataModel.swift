@@ -22,16 +22,16 @@ enum ControllerMode:String {
     case add
 }
 
-struct Item {
+struct Item:Equatable {
     
-    var id:Int
-    var name:String
-    var description:String
-    var creationdate:String
-    var completed:Bool
-    var completiondate:String
-    var tags:[Tags.RawValue]
-    var trashed:Bool
+    var id:Int = 0
+    var name:String = ""
+    var description:String = ""
+    var creationdate:String = ""
+    var completed:Bool = false
+    var completiondate:String = ""
+    var tags:[Tags.RawValue] = []
+    var trashed:Bool = false
     
     init(dictionary:[String:Any]) {
         
@@ -43,6 +43,10 @@ struct Item {
         self.completiondate = dictionary["completiondate"] as! String
         self.tags = dictionary["tags"] as! [Tags.RawValue]
         self.trashed = dictionary["trashed"] as! Bool
+        
+    }
+    
+    init() {
         
     }
     
@@ -61,9 +65,4 @@ struct Item {
         
         return returnData
     }
-}
-
-func ==(lhs:Item,rhs:Item) -> Bool {
-    
-    return lhs == rhs
 }

@@ -221,4 +221,25 @@ class FileHandlingManager:NSObject {
             print(error.localizedDescription)
         }
     }
+    
+    public func editItem(item:Item) {
+        
+        guard (self.checkForFileExistenceInDocuments(file:DATAFILENAME) == true) else {
+            return
+        }
+        do {
+            
+            let filePathURL = URL.init(fileURLWithPath:self.formDocumentPathWithFile(name: DATAFILENAME))
+            var allData = self.readJSONFile(name: DATAFILENAME) as! [[String:Any]]
+            allData.remove(at: (item.id - 1))
+            allData.insert(Item.unpack(data: item), at: (item.id - 1))
+            let jsonData = try JSONSerialization.data(withJSONObject: allData, options: [])
+            try jsonData.write(to: filePathURL)
+        }
+        catch {
+            
+            print(error.localizedDescription)
+        }
+        
+    }
 }

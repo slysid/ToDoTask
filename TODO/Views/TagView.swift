@@ -8,9 +8,29 @@
 
 import UIKit
 
+protocol TagViewProtocolDelegate {
+    
+    func handleDoubleAction(tag:TagView)
+}
+
 class TagView: UIView {
 
-    @IBOutlet weak var UITagLabel:UILabel?
+    @IBOutlet weak var UITagLabel:UILabel? {
+        
+        didSet {
+            
+            if (self.UITagLabel!.text == "") {
+                
+                self.UITagLabel!.backgroundColor = UIColor.clear
+            }
+            else {
+                
+                self.UITagLabel!.backgroundColor = UIColor.black
+            }
+        }
+    }
+    
+    public var delegate:TagViewProtocolDelegate?
     
     override init(frame: CGRect) {
         
@@ -29,11 +49,20 @@ class TagView: UIView {
         tagView.clipsToBounds = true
         tagView.UITagLabel!.text = text
         
-        if (text == "") {
-            tagView.UITagLabel!.backgroundColor = UIColor.clear
-        }
+        let doubleTap = UITapGestureRecognizer(target: tagView, action: #selector(doubleTapAction))
+        doubleTap.numberOfTapsRequired = 2
+        tagView.addGestureRecognizer(doubleTap)
+        
         
         return tagView
+    }
+    
+    @objc private func doubleTapAction() {
+        
+        if (self.delegate != nil ) {
+            
+            self.delegate!.handleDoubleAction(tag: self)
+        }
     }
 
 }

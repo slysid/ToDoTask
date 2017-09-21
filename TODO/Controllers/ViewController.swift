@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, TodoCellProtocolDelegate {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, TodoCellProtocolDelegate , DetailControllerDelegate{
     
     @IBOutlet weak var todoTable:UITableView?
     
@@ -63,6 +63,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         let detailController = DetailController(nibName: "DetailController", bundle: Bundle.main)
         detailController.itemData = data
+        detailController.delegate = self
         self.present(detailController, animated: true) {
         }
     }
@@ -70,6 +71,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func doubleTapAction(cell: TodoCell) {
         
         self.todoTable!.isEditing = !self.todoTable!.isEditing
+    }
+    
+    //DETAILCONTROLLER DELEGATE
+    
+    func refreshData(decision: Bool) {
+        
+        if (decision == true) {
+            
+            self.fillInDataSource()
+            self.todoTable!.reloadData()
+        }
     }
     
     //TABLEVIEW DELEGATE AND DATASOURCE METHODS

@@ -8,7 +8,12 @@
 
 import UIKit
 
-class DetailController: UIViewController, UITextViewDelegate, UITextFieldDelegate {
+protocol DetailControllerDelegate {
+    
+    func refreshData(decision:Bool)
+}
+
+class DetailController: UIViewController, UITextViewDelegate, UITextFieldDelegate, TagViewProtocolDelegate {
 
     @IBOutlet weak var UIToDoTitle:UITextField?
     @IBOutlet weak var UIToDoDescription:UITextView?
@@ -17,7 +22,10 @@ class DetailController: UIViewController, UITextViewDelegate, UITextFieldDelegat
     @IBOutlet weak var UICreationDate:UILabel?
     @IBOutlet weak var UIEditButtonsStack:UIStackView?
     @IBOutlet weak var UIKeyboard:UIButton?
+    @IBOutlet weak var UITagTextField:UITextField?
+    @IBOutlet weak var UITagAddButton:UIButton?
     
+    public var delegate:DetailControllerDelegate?
     public var itemData:Item?
     public var mode:ControllerMode = .view {
         
@@ -34,14 +42,16 @@ class DetailController: UIViewController, UITextViewDelegate, UITextFieldDelegat
     }
     
     private var editButton = CustomButton.initButtonWithData(title: "EDIT")
-    private var cancelButton = CustomButton.initButtonWithData(title: "CANCEL")
-    private var completeButton = CustomButton.initButtonWithData(title: "COMPLETE")
+    private var addButton = CustomButton.initButtonWithData(title: "ADD")
+    private var tags:[String] = []
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.UIToDoDescription!.delegate = self
         self.UIToDoTitle!.delegate = self
+        self.tags = self.itemData!.tags
         
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboard), name:Notification.Name.UIKeyboardDidShow , object: nil)
         
@@ -51,8 +61,6 @@ class DetailController: UIViewController, UITextViewDelegate, UITextFieldDelegat
         
         self.viewMode()
         self.showTags()
-        self.showCustomButtons()
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -66,10 +74,8 @@ class DetailController: UIViewController, UITextViewDelegate, UITextFieldDelegat
         
         self.dismiss(animated: true) {
             
-            
         }
     }
-    
     
     @IBAction private func keyboardTapped() {
         
@@ -81,13 +87,32 @@ class DetailController: UIViewController, UITextViewDelegate, UITextFieldDelegat
         self.UIKeyboard!.isHidden = true
     }
     
+    @IBAction private func addTagAction() {
+        
+        if (self.tags.count < MAXTAGS) {
+            
+            let tag = self.UITagTextField!.text!
+            self.tags.append(tag)
+            self.UITagTextField!.text = ""
+            self.showTags()
+        }
+        else {
+            
+            self.UITagTextField!.text = ""
+        }
+    }
+    
     // PRIVATE METHODS
     
     private func viewMode() {
         
+        self.showEditButton()
+        
         self.UIToDoDescription!.isEditable = false
         self.UIToDoTitle!.isEnabled = false
         self.editButton.button?.setTitle("EDIT", for: UIControlState.normal)
+        self.UITagTextField!.isHidden = true
+        self.UITagAddButton!.isHidden = self.UITagTextField!.isHidden
     }
     
     private func editMode() {
@@ -96,6 +121,9 @@ class DetailController: UIViewController, UITextViewDelegate, UITextFieldDelegat
         self.UIToDoTitle!.isEnabled = true
         self.editButton.button?.setTitle("COMMIT", for: UIControlState.normal)
         self.UIToDoDescription!.becomeFirstResponder()
+        self.UITagTextField!.isHidden = false
+        self.UITagAddButton!.isHidden = self.UITagTextField!.isHidden
+        
     }
     
     @objc private func handleKeyboard() {
@@ -103,10 +131,36 @@ class DetailController: UIViewController, UITextViewDelegate, UITextFieldDelegat
         self.UIKeyboard!.isHidden = false
     }
     
+    private func removeButtonStackViews() {
+        
+        for v in self.UIEditButtonsStack!.subviews {
+            
+            self.UIEditButtonsStack!.removeArrangedSubview(v)
+            v.removeFromSuperview()
+        }
+    }
+    
     private func showTags() {
         
-        var tags = itemData!.tags
-        if (tags.count < MAXTAGS) {
+        for v in self.UITagsStack!.subviews {
+            self.UITagsStack!.removeArrangedSubview(v)
+            v.removeFromSuperview()
+        }
+        
+        for _ in 0..<MAXTAGS {
+            
+            let tagLabel = TagView.initWithTagData(text:"")
+            tagLabel.delegate = self
+            self.UITagsStack!.addArrangedSubview(tagLabel)
+        }
+        
+        for (index, tag) in self.tags.enumerated() {
+            let tagView = self.UITagsStack!.arrangedSubviews[index] as! TagView
+            tagView.UITagLabel!.text = tag
+            tagView.UITagLabel!.backgroundColor = UIColor.black
+        }
+        
+        /*if (tags.count < MAXTAGS) {
             while tags.count < MAXTAGS {
                 tags.append("")
             }
@@ -115,29 +169,30 @@ class DetailController: UIViewController, UITextViewDelegate, UITextFieldDelegat
         for tag in tags {
             
             let tagLabel = TagView.initWithTagData(text: tag)
+            tagLabel.delegate = self
             self.UITagsStack!.addArrangedSubview(tagLabel)
-        }
+        }*/
     }
     
-    private func showCustomButtons() {
+    private func showEditButton() {
         
+        self.removeButtonStackViews()
         self.UIEditButtonsStack!.addArrangedSubview(self.editButton)
-        self.UIEditButtonsStack!.addArrangedSubview(self.completeButton)
-        self.UIEditButtonsStack!.addArrangedSubview(self.cancelButton)
         
         self.editButton.buttonAction = { (button) in
             
             self.editAction(sender:button)
         }
+    }
+    
+    private func showAddButton() {
         
-        self.cancelButton.buttonAction = { (button) in
-            
-            self.cancelAction(sender:button)
-        }
+        self.removeButtonStackViews()
+        self.UIEditButtonsStack!.addArrangedSubview(self.addButton)
         
-        self.completeButton.buttonAction = { (button) in
+        self.addButton.buttonAction = { (button) in
             
-            self.completeAction(sender:button)
+            self.addAction(sender:button)
         }
     }
     
@@ -150,18 +205,51 @@ class DetailController: UIViewController, UITextViewDelegate, UITextFieldDelegat
         else if (self.mode == .edit) {
             
             self.mode = .view
+            self.formSaveData()
         }
     }
     
-    private func cancelAction(sender:CustomButton) {
+    private func addAction(sender:CustomButton) {
         
-        print("Cancel Tapped")
+        self.mode = .add
     }
     
-    private func completeAction(sender:CustomButton) {
+    private func formSaveData() {
         
-        print("Completion Tapped")
+        var editedItem = Item()
+        
+        editedItem.id = self.itemData!.id
+        editedItem.name = self.UIToDoTitle!.text!
+        editedItem.description = self.UIToDoDescription!.text
+        editedItem.creationdate = self.itemData!.creationdate
+        editedItem.completed = self.itemData!.completed
+        editedItem.completiondate = self.itemData!.completiondate
+        editedItem.tags = self.formTagsArray()
+        editedItem.trashed = self.itemData!.trashed
+        
+        if (editedItem != self.itemData!) {
+            
+            FileHandlingManager.sharedInstance.editItem(item: editedItem)
+            if (self.delegate != nil) {
+                
+                self.delegate!.refreshData(decision: true)
+            }
+        }
     }
+    
+    private func formTagsArray() -> [String] {
+        
+        var result:[String] = []
+        
+        for v in self.UITagsStack!.arrangedSubviews {
+            let text = (v as! TagView).UITagLabel!.text
+            if (text != "") {
+                result.append(text!)
+            }
+         }
+        return result
+    }
+    
     
     // KEYBOARD DELEGATE METHODS
     
@@ -169,5 +257,16 @@ class DetailController: UIViewController, UITextViewDelegate, UITextFieldDelegat
         
     }
     
+    // TAGVIEW DELEGATE METHODS
+    
+    func handleDoubleAction(tag: TagView) {
+        
+        if (self.mode == .edit) {
+            
+            let index = self.tags.index(of: tag.UITagLabel!.text!)
+            self.tags.remove(at: index!)
+            self.showTags()
+        }
+    }
 
 }

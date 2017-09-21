@@ -57,3 +57,17 @@ extension Array {
         return returnData
     }
 }
+
+
+func ==(lhs:Item,rhs:Item) -> Bool {
+    
+    return lhs.id == rhs.id &&
+        lhs.name == rhs.name &&
+        lhs.description == rhs.description &&
+        lhs.creationdate == rhs.creationdate &&
+        lhs.completed == rhs.completed &&
+        lhs.completiondate == rhs.completiondate &&
+        lhs.tags == rhs.tags &&
+        lhs.trashed == rhs.trashed
+    
+}
