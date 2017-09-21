@@ -277,4 +277,24 @@ class FileHandlingManager:NSObject {
             print(error.localizedDescription)
         }
     }
+    
+    public func search(text:String) -> [[String:Any]] {
+        
+        guard (self.checkForFileExistenceInDocuments(file:DATAFILENAME) == true) else {
+            return []
+        }
+        let text = text.lowercased()
+        let allData = self.readJSONFile(name: DATAFILENAME) as! [[String:Any]]
+        let data = allData.filter{
+            
+            ($0["name"] as! String).lowercased().range(of: text) != nil ||
+            ($0["description"] as! String).lowercased().range(of: text) != nil ||
+            ($0["creationdate"] as! String).lowercased().range(of: text) != nil ||
+            ($0["completiondate"] as! String).lowercased().range(of: text) != nil ||
+            ($0["tags"] as! [String]).contains(text) &&
+            ($0["trashed"] as! Bool) == false
+        }
+        return data
+       
+    }
 }

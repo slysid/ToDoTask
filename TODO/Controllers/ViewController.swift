@@ -8,12 +8,14 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, TodoCellProtocolDelegate , DetailControllerDelegate{
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, TodoCellProtocolDelegate , DetailControllerDelegate, UISearchResultsUpdating, UISearchBarDelegate{
     
     @IBOutlet weak var todoTable:UITableView?
     @IBOutlet weak var UIAddButton:UIButton?
     @IBOutlet weak var UITrashButton:UIButton?
     
+    private var searchState:Bool = false
+    private var searchController:UISearchController?
     private var dataSource:[[String:Any]] = []
     private var trashIndicator:Bool = false {
         didSet {
@@ -30,6 +32,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         super.viewDidLoad()
         
+        self.searchController = UISearchController.init(searchResultsController: nil)
+        self.searchController!.searchResultsUpdater = self
+        self.searchController!.searchBar.searchBarStyle = .minimal
+        self.searchController!.searchBar.tintColor = UIColor.black
+        self.searchController!.searchBar.delegate = self
+        self.definesPresentationContext = true
         
         self.fillInDataSource()
         
@@ -38,6 +46,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.todoTable!.backgroundColor = UIColor.clear
         self.todoTable!.separatorStyle = .none
         self.todoTable!.isEditing = false
+        self.todoTable!.tableHeaderView = self.searchController!.searchBar
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -65,6 +74,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBAction private func trashTapped() {
         
+        if (self.searchState == true) {
+            
+            self.trashIndicator = true
+            self.searchState = false
+        }
         self.trashIndicator = !self.trashIndicator
         self.fillInDataSource()
         self.todoTable!.reloadData()
@@ -217,6 +231,23 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         
         return [delete, recover]
+    }
+    
+    // SEARCH METHODS
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        self.searchController?.dismiss(animated: true, completion: {
+            
+        })
+        self.dataSource = FileHandlingManager.sharedInstance.search(text:searchBar.text!)
+        self.todoTable!.reloadData()
+        self.UITrashButton!.setBackgroundImage(UIImage(named:"search.png"), for: UIControlState.normal)
+        self.searchState = true
     }
 }
 
