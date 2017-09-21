@@ -148,7 +148,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         let data = self.dataSource[indexPath.row].item()
         (cell as! TodoCell).todoTitle!.text = data.name
-        (cell as! TodoCell).todoDescription!.text = data.description
+        (cell as! TodoCell).todoDescription!.text = data.creationdate.components(separatedBy:"T")[0]
         (cell as! TodoCell).completionStatus = data.completed
         if (data.completiondate != "") {
             
