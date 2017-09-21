@@ -1,0 +1,52 @@
+[
+	{
+		"id" : 1,
+		"name" : "Dunkirk",
+		"description" : "Movie description",
+		"creationdate" : "2017-10-14T19:43:37+0100",
+		"completed": false,
+		"completiondate" : "",
+		"tags":["entertainment"],
+		"trashed" : false 
+	},
+	{
+		"id" : 2,
+		"name" : "War of planet of the apes",
+		"description" : "Movie description",
+		"creationdate" : "2017-10-14T19:43:37+0100",
+		"completed": false,
+		"completiondate" : "",
+		"tags":["entertainment"],
+		"trashed" : false 
+	},
+	{
+		"id" : 3,
+		"name" : "Spiderman Homecoming",
+		"description" : "Movie description",
+		"creationdate" : "2017-10-14T19:43:37+0100",
+		"completed": false,
+		"completiondate" : "",
+		"tags":["entertainment"],
+		"trashed" : false 
+	},
+	{
+		"id" : 4,
+		"name" : "Wonderwoman",
+		"description" : "Movie description",
+		"creationdate" : "2017-10-14T19:43:37+0100",
+		"completed": false,
+		"completiondate" : "",
+		"tags":["entertainment"],
+		"trashed" : false 
+	},
+	{
+		"id" : 5,
+		"name" : "Hitman's bodygaurd",
+		"description" : "Movie description",
+		"creationdate" : "2017-10-14T19:43:37+0100",
+		"completed": false,
+		"completiondate" : "",
+		"tags":["entertainment"],
+		"trashed" : true 
+	}
+]
