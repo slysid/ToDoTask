@@ -95,6 +95,7 @@ class DetailController: UIViewController, UITextViewDelegate, UITextFieldDelegat
             
             let tag = self.UITagTextField!.text!
             self.tags.append(tag)
+            self.tags = Array<String>.removeDuplicates(data:self.tags)
             self.UITagTextField!.text = ""
             self.showTags()
         }

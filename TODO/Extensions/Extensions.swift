@@ -56,6 +56,17 @@ extension Array {
         }
         return returnData
     }
+    
+    static func removeDuplicates(data:[String]) -> [String] {
+        
+        var returnData:[String] = []
+        for p in data {
+            if (returnData.contains(p) == false) {
+                returnData.append(p)
+            }
+        }
+        return returnData
+    }
 }
 
 
