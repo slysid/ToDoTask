@@ -216,11 +216,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
-        let recover = UITableViewRowAction.init(style: .normal, title: "Recover") { (action, indexpath) in
+        let recover = UITableViewRowAction.init(style: .normal, title: NSLocalizedString("LOC_RECOVER", comment:"")) { (action, indexpath) in
             self.trashItem(indexpath: indexpath)
         }
         
-        let delete = UITableViewRowAction.init(style: .destructive, title: "Delete") { (action
+        let delete = UITableViewRowAction.init(style: .destructive, title: NSLocalizedString("LOC_DELETE", comment:"")) { (action
             , indexpath) in
            if (self.trashIndicator == false) {
                 self.trashItem(indexpath: indexpath)

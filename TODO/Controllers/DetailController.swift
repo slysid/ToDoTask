@@ -42,8 +42,8 @@ class DetailController: UIViewController, UITextViewDelegate, UITextFieldDelegat
         }
     }
     
-    private var editButton = CustomButton.initButtonWithData(title: "EDIT")
-    private var addButton = CustomButton.initButtonWithData(title: "ADD")
+    private var editButton = CustomButton.initButtonWithData(title:EDIT)
+    private var addButton = CustomButton.initButtonWithData(title:ADD)
     private var tags:[String] = []
     
     
@@ -113,7 +113,7 @@ class DetailController: UIViewController, UITextViewDelegate, UITextFieldDelegat
         
         self.UIToDoDescription!.isEditable = false
         self.UIToDoTitle!.isEnabled = false
-        self.editButton.button?.setTitle("EDIT", for: UIControlState.normal)
+        self.editButton.button?.setTitle(EDIT, for: UIControlState.normal)
         self.UITagTextField!.isHidden = true
         self.UITagAddButton!.isHidden = self.UITagTextField!.isHidden
     }
@@ -122,7 +122,7 @@ class DetailController: UIViewController, UITextViewDelegate, UITextFieldDelegat
         
         self.UIToDoDescription!.isEditable = true
         self.UIToDoTitle!.isEnabled = true
-        self.editButton.button?.setTitle("COMMIT", for: UIControlState.normal)
+        self.editButton.button?.setTitle(COMMIT, for: UIControlState.normal)
         self.UIToDoTitle!.becomeFirstResponder()
         self.UITagTextField!.isHidden = false
         self.UITagAddButton!.isHidden = self.UITagTextField!.isHidden
@@ -135,7 +135,7 @@ class DetailController: UIViewController, UITextViewDelegate, UITextFieldDelegat
         
         self.UIToDoDescription!.isEditable = true
         self.UIToDoTitle!.isEnabled = true
-        self.addButton.button?.setTitle("ADD", for: UIControlState.normal)
+        self.addButton.button?.setTitle(ADD, for: UIControlState.normal)
         self.UIToDoTitle!.becomeFirstResponder()
         self.UITagTextField!.isHidden = false
         self.UITagAddButton!.isHidden = self.UITagTextField!.isHidden

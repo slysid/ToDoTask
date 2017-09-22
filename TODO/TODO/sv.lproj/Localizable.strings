@@ -1,0 +1,18 @@
+/* 
+  Localizable.strings
+  TODO
+
+  Created by Bharath on 2017-09-22.
+  Copyright © 2017 Bharath. All rights reserved.
+*/
+
+// VIEWCONTROLLER TEXTS
+
+LOC_RECOVER = "Ta igen sig";
+LOC_DELETE = "Radera";
+
+//DETAILCONTROLLER
+
+LOC_EDIT = "Redigera";
+LOC_ADD = "Lägg till";
+LOC_COMMIT = "Begå";

@@ -1,0 +1,9 @@
+
+/* Class = "UITextField"; placeholder = "Add a Title"; ObjectID = "B4l-wb-KGw"; */
+"B4l-wb-KGw.placeholder" = "Lägg till en Titel";
+
+/* Class = "UITextField"; placeholder = "Add a Tag"; ObjectID = "PyR-TF-Mgw"; */
+"PyR-TF-Mgw.placeholder" = "Lägg till en tagg";
+
+/* Class = "UIButton"; normalTitle = "ADD"; ObjectID = "jkh-kz-WNc"; */
+"jkh-kz-WNc.normalTitle" = "Lägg till";
