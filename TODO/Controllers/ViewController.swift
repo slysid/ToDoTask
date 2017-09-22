@@ -86,9 +86,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     // PRIVATE METHODS
     
+    private func reloadTableData() {
+        
+        self.fillInDataSource()
+        self.todoTable!.reloadData()
+    }
+    
     private func fillInDataSource() {
         
-         self.dataSource = FileHandlingManager.sharedInstance.readJSONFile(name: DATAFILENAME) as! [[String:Any]]
+        self.dataSource = FileHandlingManager.sharedInstance.readJSONFile(name: DATAFILENAME) as! [[String:Any]]
         self.dataSource = self.dataSource.filter{($0["trashed"] as! Bool) == self.trashIndicator}
         self.dataSource = self.dataSource.reversed()
     }
@@ -99,6 +105,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let item = self.dataSource[indexPath!.row].item()
         FileHandlingManager.sharedInstance.toggleCompletionStatus(item: item)
         cell.completionStatus = !cell.completionStatus!
+        self.reloadTableData()
+        
     }
     
     private func trashItem(indexpath:IndexPath) {
