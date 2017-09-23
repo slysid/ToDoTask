@@ -127,20 +127,4 @@ class TODOUITests: XCTestCase {
         
     }
     
-    func testGameStyleSwitch() {
-        
-        let cell = app.tables.cells.element(boundBy: 0)
-        cell.tap()
-        
-        app.buttons["EDIT"].tap()
-        let originalText = app.textFields["Add a Title"].title
-        let editedText = originalText + "_edit"
-        app.textFields["Add a Title"].typeText(editedText)
-        app.buttons["keyboard"].tap()
-        app.buttons["COMMIT"].tap()
-        app.buttons["close"].tap()
-        
-        //XCTAssertTrue(app.tables.staticTexts[editedText].exists)
-    }
-    
 }

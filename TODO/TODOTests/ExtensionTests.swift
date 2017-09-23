@@ -7,6 +7,8 @@
 //
 
 import XCTest
+@testable import TODO
+
 
 class ExtensionTests: XCTestCase {
     
@@ -20,8 +22,21 @@ class ExtensionTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testDictExtensionItem() {
+        
+        let data:[String:Any] = ["id":1,"name":"test",
+                                 "description":"test description",
+                                 "creationdate":"23-09-2017",
+                                 "completed":false,
+                                 "completiondate":"",
+                                 "tags":[],
+                                 "trashed":false]
+        
+        let item1 = data.item()
+        let item2 = Item.init(dictionary: data)
+        XCTAssertTrue(item1 == item2)
+        
+        
+        
     }
 }
