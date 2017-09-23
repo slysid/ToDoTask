@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  SummaryController
 //  TODO
 //
 //  Created by Bharath on 2017-09-20.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, TodoCellProtocolDelegate , DetailControllerDelegate, UISearchResultsUpdating, UISearchBarDelegate{
+class SummaryController: UIViewController, UITableViewDelegate, UITableViewDataSource, TodoCellProtocolDelegate , DetailControllerDelegate, UISearchResultsUpdating, UISearchBarDelegate{
     
     @IBOutlet weak var todoTable:UITableView?
     @IBOutlet weak var UIAddButton:UIButton?
@@ -32,7 +32,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         super.viewDidLoad()
         
-       /* self.searchController = UISearchController.init(searchResultsController: nil)
+        self.searchController = UISearchController.init(searchResultsController: nil)
         self.searchController!.searchResultsUpdater = self
         self.searchController!.searchBar.searchBarStyle = .minimal
         self.searchController!.searchBar.tintColor = UIColor.black
@@ -46,20 +46,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.todoTable!.backgroundColor = UIColor.clear
         self.todoTable!.separatorStyle = .none
         self.todoTable!.isEditing = false
-        self.todoTable!.tableHeaderView = self.searchController!.searchBar */
+        self.todoTable!.tableHeaderView = self.searchController!.searchBar
     }
     
     override func viewDidAppear(_ animated: Bool) {
         
         super.viewDidAppear(animated)
         
-        let summaryController = SummaryController(nibName: "SummaryController", bundle: Bundle.main)
-        self.present(summaryController, animated: true) {
-            
-        }
-        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -206,7 +201,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
         
-           return false
+        return false
     }
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
@@ -227,16 +222,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         let delete = UITableViewRowAction.init(style: .destructive, title: NSLocalizedString("LOC_DELETE", comment:"")) { (action
             , indexpath) in
-           if (self.trashIndicator == false) {
+            if (self.trashIndicator == false) {
                 self.trashItem(indexpath: indexpath)
-           }
-           else {
-            
+            }
+            else {
+                
                 let item = self.dataSource[indexpath.row].item()
                 FileHandlingManager.sharedInstance.deleteFromTrash(item: item)
                 self.fillInDataSource()
                 tableView.reloadData()
-           }
+            }
         }
         
         if (self.trashIndicator == false) {
@@ -263,4 +258,5 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.searchState = true
     }
 }
+
 
