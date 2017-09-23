@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8E018B291F764140002ED14E /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E018B281F764140002ED14E /* RequestManager.swift */; };
+		8E018B2B1F764261002ED14E /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E018B2A1F764261002ED14E /* APIManager.swift */; };
 		8EDA7C241F75117600E7F0E0 /* DetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EDA7C261F75117600E7F0E0 /* DetailController.xib */; };
 		8EDA7C2B1F7511DA00E7F0E0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8EDA7C291F7511DA00E7F0E0 /* Localizable.strings */; };
 		8EDA7C3B1F75A84E00E7F0E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EFC13F91F7280DD0001C44F /* Main.storyboard */; };
@@ -50,6 +52,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8E018B281F764140002ED14E /* RequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
+		8E018B2A1F764261002ED14E /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		8EDA7C221F75104F00E7F0E0 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Main.strings; sourceTree = "<group>"; };
 		8EDA7C231F75104F00E7F0E0 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		8EDA7C251F75117600E7F0E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/DetailController.xib; sourceTree = "<group>"; };
@@ -203,6 +207,8 @@
 			children = (
 				8EFC142C1F7282F00001C44F /* FileHandlingManager.swift */,
 				8EFC143A1F72DD350001C44F /* CommonsManager.swift */,
+				8E018B281F764140002ED14E /* RequestManager.swift */,
+				8E018B2A1F764261002ED14E /* APIManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -368,12 +374,14 @@
 				8EFC14351F72A2480001C44F /* Extensions.swift in Sources */,
 				8EFC14491F7328090001C44F /* TagView.swift in Sources */,
 				8EFC13F81F7280DD0001C44F /* ViewController.swift in Sources */,
+				8E018B291F764140002ED14E /* RequestManager.swift in Sources */,
 				8EFC143D1F72DD990001C44F /* Configuration.swift in Sources */,
 				8EFC14321F729CF00001C44F /* DataModel.swift in Sources */,
 				8EFC142D1F7282F00001C44F /* FileHandlingManager.swift in Sources */,
 				8EFC143B1F72DD350001C44F /* CommonsManager.swift in Sources */,
 				8EFC144F1F73B0500001C44F /* CustomButton.swift in Sources */,
 				8EFC13F61F7280DD0001C44F /* AppDelegate.swift in Sources */,
+				8E018B2B1F764261002ED14E /* APIManager.swift in Sources */,
 				8EFC14441F7318800001C44F /* DetailController.swift in Sources */,
 				8EFC14401F72DF1C0001C44F /* TodoCell.swift in Sources */,
 			);

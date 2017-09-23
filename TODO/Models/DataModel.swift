@@ -72,3 +72,26 @@ struct Item:Equatable {
         return returnData
     }
 }
+
+enum APIFINGERPRINT {
+    
+    case ping
+    case getAllLists
+    case getCompletedLists
+    case getOpenLists
+    
+    func get() -> [String:Any] {
+        
+        switch self {
+        case .ping:
+            return ["method":"GET","path":"/ping","secured":false]
+        case .getAllLists:
+            return ["method":"GET","path":"/lists/all","secured":false]
+        case .getCompletedLists:
+            return ["method":"GET","path":"/lists/completed","secured":false]
+        case .getOpenLists:
+            return ["method":"GET","path":"/lists/open","secured":false]
+            
+        }
+    }
+}
