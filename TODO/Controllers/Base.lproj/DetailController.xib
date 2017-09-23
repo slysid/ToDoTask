@@ -102,6 +102,6 @@
     </objects>
     <resources>
         <image name="close" width="128" height="128"/>
-        <image name="keyboard" width="128" height="128"/>
+        <image name="keyboard" width="25" height="25"/>
     </resources>
 </document>

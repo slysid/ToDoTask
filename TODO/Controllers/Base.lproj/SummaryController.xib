@@ -58,7 +58,7 @@
         </view>
     </objects>
     <resources>
-        <image name="add" width="125" height="125"/>
-        <image name="trash" width="100" height="100"/>
+        <image name="add" width="20" height="20"/>
+        <image name="trash" width="20" height="20"/>
     </resources>
 </document>
