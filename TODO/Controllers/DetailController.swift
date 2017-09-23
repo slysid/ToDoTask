@@ -218,7 +218,7 @@ class DetailController: UIViewController, UITextViewDelegate, UITextFieldDelegat
         
         addItem.name = self.UIToDoTitle!.text!
         addItem.description = self.UIToDoDescription!.text
-        addItem.creationdate = Date().iso8601Short
+        addItem.creationdate = Date().iso8601
         addItem.completed = false
         addItem.completiondate = ""
         addItem.tags = self.formTagsArray()

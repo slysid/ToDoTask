@@ -12,7 +12,7 @@ import UIKit
 enum Tags:String {
     
     case entertainment = "entertainment"
-    case general
+    case general = "general"
 }
 
 enum ControllerMode:String {

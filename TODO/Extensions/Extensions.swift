@@ -13,21 +13,17 @@ extension Formatter {
     static let iso8601: DateFormatter = {
         let formatter = DateFormatter()
         formatter.calendar = Calendar(identifier: .iso8601)
-        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.locale = Locale.current
         formatter.timeZone = TimeZone(secondsFromGMT: 0)
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
+        formatter.dateFormat = "dd-MM-yyyy"
         return formatter
     }()
 }
+
+
 extension Date {
     var iso8601: String {
         return Formatter.iso8601.string(from: self)
-    }
-    
-    var iso8601Short: String {
-        
-        let date = self.iso8601
-        return date.components(separatedBy: "T")[0]
     }
 }
 

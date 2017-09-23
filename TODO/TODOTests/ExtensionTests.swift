@@ -1,15 +1,14 @@
 //
-//  TODOTests.swift
+//  ExtensionTests.swift
 //  TODOTests
 //
-//  Created by Bharath on 2017-09-20.
+//  Created by Bharath on 2017-09-23.
 //  Copyright © 2017 Bharath. All rights reserved.
 //
 
 import XCTest
-@testable import TODO
 
-class TODOTests: XCTestCase {
+class ExtensionTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
@@ -25,5 +24,4 @@ class TODOTests: XCTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
-    
 }

@@ -178,7 +178,7 @@ class FileHandlingManager:NSObject {
         let completionStatus = selectedData["completed"] as! Bool
         do {
            try self.updateRecordInJSONFile(name: DATAFILENAME, item: item, key: "completed", value: !completionStatus)
-            try self.updateRecordInJSONFile(name: DATAFILENAME, item: item, key: "completiondate", value: Date().iso8601Short)
+            try self.updateRecordInJSONFile(name: DATAFILENAME, item: item, key: "completiondate", value: Date().iso8601)
         }
         catch {
             

@@ -11,6 +11,8 @@
 		8E018B2B1F764261002ED14E /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E018B2A1F764261002ED14E /* APIManager.swift */; };
 		8E018B2E1F766464002ED14E /* SummaryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E018B2C1F766464002ED14E /* SummaryController.swift */; };
 		8E018B301F7668C6002ED14E /* SummaryController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E018B321F7668C6002ED14E /* SummaryController.xib */; };
+		8E018B361F76BAC7002ED14E /* ModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E018B351F76BAC7002ED14E /* ModelTests.swift */; };
+		8E018B381F76C4B6002ED14E /* ExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E018B371F76C4B6002ED14E /* ExtensionTests.swift */; };
 		8EDA7C241F75117600E7F0E0 /* DetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EDA7C261F75117600E7F0E0 /* DetailController.xib */; };
 		8EDA7C2B1F7511DA00E7F0E0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8EDA7C291F7511DA00E7F0E0 /* Localizable.strings */; };
 		8EDA7C3B1F75A84E00E7F0E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EFC13F91F7280DD0001C44F /* Main.storyboard */; };
@@ -25,7 +27,6 @@
 		8EFC14321F729CF00001C44F /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFC14311F729CF00001C44F /* DataModel.swift */; };
 		8EFC14351F72A2480001C44F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFC14341F72A2480001C44F /* Extensions.swift */; };
 		8EFC14391F72A6270001C44F /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = 8EFC14381F72A61A0001C44F /* data.json */; };
-		8EFC143B1F72DD350001C44F /* CommonsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFC143A1F72DD350001C44F /* CommonsManager.swift */; };
 		8EFC143D1F72DD990001C44F /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFC143C1F72DD990001C44F /* Configuration.swift */; };
 		8EFC14401F72DF1C0001C44F /* TodoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFC143E1F72DF1C0001C44F /* TodoCell.swift */; };
 		8EFC14411F72DF1C0001C44F /* TodoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EFC143F1F72DF1C0001C44F /* TodoCell.xib */; };
@@ -59,6 +60,8 @@
 		8E018B2C1F766464002ED14E /* SummaryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryController.swift; sourceTree = "<group>"; };
 		8E018B311F7668C6002ED14E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SummaryController.xib; sourceTree = "<group>"; };
 		8E018B341F7668E1002ED14E /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/SummaryController.strings; sourceTree = "<group>"; };
+		8E018B351F76BAC7002ED14E /* ModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTests.swift; sourceTree = "<group>"; };
+		8E018B371F76C4B6002ED14E /* ExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionTests.swift; sourceTree = "<group>"; };
 		8EDA7C221F75104F00E7F0E0 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Main.strings; sourceTree = "<group>"; };
 		8EDA7C231F75104F00E7F0E0 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		8EDA7C251F75117600E7F0E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/DetailController.xib; sourceTree = "<group>"; };
@@ -82,7 +85,6 @@
 		8EFC14311F729CF00001C44F /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		8EFC14341F72A2480001C44F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		8EFC14381F72A61A0001C44F /* data.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = data.json; path = ../../Data/data.json; sourceTree = "<group>"; };
-		8EFC143A1F72DD350001C44F /* CommonsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonsManager.swift; sourceTree = "<group>"; };
 		8EFC143C1F72DD990001C44F /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		8EFC143E1F72DF1C0001C44F /* TodoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoCell.swift; sourceTree = "<group>"; };
 		8EFC143F1F72DF1C0001C44F /* TodoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TodoCell.xib; sourceTree = "<group>"; };
@@ -160,6 +162,8 @@
 		8EFC14091F7280DD0001C44F /* TODOTests */ = {
 			isa = PBXGroup;
 			children = (
+				8E018B371F76C4B6002ED14E /* ExtensionTests.swift */,
+				8E018B351F76BAC7002ED14E /* ModelTests.swift */,
 				8EFC140A1F7280DD0001C44F /* TODOTests.swift */,
 				8EFC140C1F7280DD0001C44F /* Info.plist */,
 			);
@@ -213,7 +217,6 @@
 			isa = PBXGroup;
 			children = (
 				8EFC142C1F7282F00001C44F /* FileHandlingManager.swift */,
-				8EFC143A1F72DD350001C44F /* CommonsManager.swift */,
 				8E018B281F764140002ED14E /* RequestManager.swift */,
 				8E018B2A1F764261002ED14E /* APIManager.swift */,
 			);
@@ -387,7 +390,6 @@
 				8EFC143D1F72DD990001C44F /* Configuration.swift in Sources */,
 				8EFC14321F729CF00001C44F /* DataModel.swift in Sources */,
 				8EFC142D1F7282F00001C44F /* FileHandlingManager.swift in Sources */,
-				8EFC143B1F72DD350001C44F /* CommonsManager.swift in Sources */,
 				8EFC144F1F73B0500001C44F /* CustomButton.swift in Sources */,
 				8EFC13F61F7280DD0001C44F /* AppDelegate.swift in Sources */,
 				8E018B2B1F764261002ED14E /* APIManager.swift in Sources */,
@@ -400,7 +402,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E018B381F76C4B6002ED14E /* ExtensionTests.swift in Sources */,
 				8EFC140B1F7280DD0001C44F /* TODOTests.swift in Sources */,
+				8E018B361F76BAC7002ED14E /* ModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

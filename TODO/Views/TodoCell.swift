@@ -39,7 +39,7 @@ class TodoCell: UITableViewCell {
                 self.UICompletionDate!.isHidden = false
             }
             
-            self.UICompletionDate!.text = Date().iso8601Short
+            self.UICompletionDate!.text = Date().iso8601
             self.completion!.setBackgroundImage(UIImage(named:imageName), for: UIControlState.normal)
         }
     }
