@@ -1,7 +1,7 @@
 # Dependency
 No dependencies and the code is optimised for iOS 9.0 and above
 
-#Mock Service
+# Mock Service
 The app includes a mock service which enables data persistence.The app also includes a API manager and Request manager for external communication which is NOT implemented in this DEMO version
 
 
