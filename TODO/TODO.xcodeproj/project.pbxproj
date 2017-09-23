@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8EDA7C241F75117600E7F0E0 /* DetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EDA7C261F75117600E7F0E0 /* DetailController.xib */; };
 		8EDA7C2B1F7511DA00E7F0E0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8EDA7C291F7511DA00E7F0E0 /* Localizable.strings */; };
+		8EDA7C3B1F75A84E00E7F0E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EFC13F91F7280DD0001C44F /* Main.storyboard */; };
 		8EFC13F61F7280DD0001C44F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFC13F51F7280DD0001C44F /* AppDelegate.swift */; };
 		8EFC13F81F7280DD0001C44F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EFC13F71F7280DD0001C44F /* ViewController.swift */; };
 		8EFC13FB1F7280DD0001C44F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EFC13F91F7280DD0001C44F /* Main.storyboard */; };
@@ -353,6 +354,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8EDA7C3B1F75A84E00E7F0E0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
