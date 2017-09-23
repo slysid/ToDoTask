@@ -1,52 +1,82 @@
 [
 	{
 		"id" : 1,
-		"name" : "Dunkirk",
-		"description" : "Movie description",
-		"creationdate" : "2017-10-14T19:43:37+0100",
+		"name" : "To Watch IT",
+		"description" : "To watch IT in scandinavia mall",
+		"creationdate" : "2017-09-23",
 		"completed": false,
 		"completiondate" : "",
-		"tags":["entertainment"],
+		"tags":["movie","entertainment"],
 		"trashed" : false 
 	},
 	{
 		"id" : 2,
-		"name" : "War of planet of the apes",
-		"description" : "Movie description",
-		"creationdate" : "2017-10-14T19:43:37+0100",
+		"name" : "Kingsmans Golden Circle",
+		"description" : "Book for Kingsman this wednesday in IMAX",
+		"creationdate" : "2017-09-23",
 		"completed": false,
 		"completiondate" : "",
-		"tags":["entertainment"],
+		"tags":["entertainment","movie"],
 		"trashed" : false 
 	},
 	{
 		"id" : 3,
-		"name" : "Spiderman Homecoming",
-		"description" : "Movie description",
-		"creationdate" : "2017-10-14T19:43:37+0100",
+		"name" : "Vanishing Games",
+		"description" : "Order for vanishing games through Amazon",
+		"creationdate" : "2017-10-23",
 		"completed": false,
 		"completiondate" : "",
-		"tags":["entertainment"],
+		"tags":["entertainment","books"],
 		"trashed" : false 
 	},
 	{
 		"id" : 4,
-		"name" : "Wonderwoman",
-		"description" : "Movie description",
-		"creationdate" : "2017-10-14T19:43:37+0100",
+		"name" : "21KM run",
+		"description" : "To do a half marathon run again ",
+		"creationdate" : "2017-09-23",
 		"completed": false,
 		"completiondate" : "",
-		"tags":["entertainment"],
+		"tags":["health"],
 		"trashed" : false 
 	},
 	{
 		"id" : 5,
-		"name" : "Hitman's bodygaurd",
-		"description" : "Movie description",
-		"creationdate" : "2017-10-14T19:43:37+0100",
+		"name" : "Renew SL pass",
+		"description" : "Renew SL Pass",
+		"creationdate" : "2017-10-23",
 		"completed": false,
 		"completiondate" : "",
-		"tags":["entertainment"],
-		"trashed" : true 
+		"tags":["monthly"],
+		"trashed" : false 
+	},
+	{
+		"id" : 6,
+		"name" : "Book appointment",
+		"description" : "Book appointment",
+		"creationdate" : "2017-10-23",
+		"completed": false,
+		"completiondate" : "",
+		"tags":["health"],
+		"trashed" : false 
+	},
+	{
+		"id" : 7,
+		"name" : "Window Curtain",
+		"description" : "Order window curatins online",
+		"creationdate" : "2017-10-23",
+		"completed": false,
+		"completiondate" : "",
+		"tags":["shopping"],
+		"trashed" : false 
+	},
+	{
+		"id" : 8,
+		"name" : "iPhone 8",
+		"description" : "Order iPhone 8 or Watch.",
+		"creationdate" : "2017-10-23",
+		"completed": false,
+		"completiondate" : "",
+		"tags":["shopping","apple"],
+		"trashed" : false 
 	}
 ]
